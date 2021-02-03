@@ -1,0 +1,13 @@
+version: "3.2"
+services:
+  tenant:
+    build: 
+      context: .
+    image: tenant-service
+    env_file: 
+      - ./.env
+    ports: 
+      - 7171:7171
+    container_name: tenant-service-app
+      
+

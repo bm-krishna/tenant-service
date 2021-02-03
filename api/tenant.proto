@@ -1,0 +1,18 @@
+syntax = "proto3";
+package tenant;
+option go_package="github.com/bm-krishna-source/tenantService;tenant";
+message TenantRequest {
+    bytes request=1;
+}
+// message TenantPayload {
+//     google.protobuf.Any payload=1;
+// }
+
+message TenantResponse {
+   bytes response=1;
+}
+
+service Tenant {
+    rpc API (TenantRequest) returns (TenantResponse);
+    rpc Create (TenantRequest) returns (TenantResponse);
+}
