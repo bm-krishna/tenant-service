@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/bm-krishna-source/tenant-service/pkg/cmd"
+	"github.com/bm-krishna/tenant-service/pkg/cmd"
 )
 
 func main() {

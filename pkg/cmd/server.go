@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/bm-krishna-source/tenant-service/pkg/protocal/tenant"
-	"github.com/bm-krishna-source/tenant-service/pkg/server"
+	"github.com/bm-krishna/tenant-service/pkg/protocal/tenant"
+	"github.com/bm-krishna/tenant-service/pkg/server"
 )
 
 type Config struct {

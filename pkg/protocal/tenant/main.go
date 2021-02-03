@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/bm-krishna-source/tenant-service/pkg/api/tenant"
+	"github.com/bm-krishna/tenant-service/pkg/api/tenant"
 	"google.golang.org/grpc"
 )
 

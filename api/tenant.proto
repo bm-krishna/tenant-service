@@ -1,6 +1,6 @@
 syntax = "proto3";
 package tenant;
-option go_package="github.com/bm-krishna-source/tenantService;tenant";
+option go_package="github.com/bm-krishna/tenantService;tenant";
 message TenantRequest {
     bytes request=1;
 }

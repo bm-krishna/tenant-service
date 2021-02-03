@@ -1,4 +1,4 @@
-module github.com/bm-krishna-source/tenant-service
+module github.com/bm-krishna/tenant-service
 
 go 1.15
 
