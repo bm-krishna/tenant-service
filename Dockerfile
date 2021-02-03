@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:1.15.7-alpine
 COPY . $GOPATH/src/github.com/bm-krishna/tenant
 WORKDIR $GOPATH/src/github.com/bm-krishna/tenant
 RUN go get -d -v ./...
