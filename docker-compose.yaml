@@ -3,7 +3,7 @@ services:
   tenant:
     build: 
       context: .
-    image: tenant-service
+    image: bmkrishnasource/tenant-service
     env_file: 
       - ./.env
     ports: 
