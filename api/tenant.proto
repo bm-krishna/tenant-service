@@ -15,4 +15,8 @@ message TenantResponse {
 service Tenant {
     rpc API (TenantRequest) returns (TenantResponse);
     rpc Create (TenantRequest) returns (TenantResponse);
+    rpc Fetch(TenantRequest) returns (TenantResponse);
+    rpc GetByID (TenantRequest) returns (TenantResponse);
+    rpc Update (TenantRequest) returns (TenantResponse);
+    rpc Delete (TenantRequest) returns (TenantResponse);
 }

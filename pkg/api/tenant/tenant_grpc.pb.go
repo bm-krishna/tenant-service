@@ -20,6 +20,10 @@ const _ = grpc.SupportPackageIsVersion7
 type TenantClient interface {
 	API(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
 	Create(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
+	Fetch(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
+	GetByID(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
+	Update(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
+	Delete(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
 }
 
 type tenantClient struct {
@@ -48,12 +52,52 @@ func (c *tenantClient) Create(ctx context.Context, in *TenantRequest, opts ...gr
 	return out, nil
 }
 
+func (c *tenantClient) Fetch(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error) {
+	out := new(TenantResponse)
+	err := c.cc.Invoke(ctx, "/tenant.Tenant/Fetch", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tenantClient) GetByID(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error) {
+	out := new(TenantResponse)
+	err := c.cc.Invoke(ctx, "/tenant.Tenant/GetByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tenantClient) Update(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error) {
+	out := new(TenantResponse)
+	err := c.cc.Invoke(ctx, "/tenant.Tenant/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tenantClient) Delete(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error) {
+	out := new(TenantResponse)
+	err := c.cc.Invoke(ctx, "/tenant.Tenant/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TenantServer is the server API for Tenant service.
 // All implementations must embed UnimplementedTenantServer
 // for forward compatibility
 type TenantServer interface {
 	API(context.Context, *TenantRequest) (*TenantResponse, error)
 	Create(context.Context, *TenantRequest) (*TenantResponse, error)
+	Fetch(context.Context, *TenantRequest) (*TenantResponse, error)
+	GetByID(context.Context, *TenantRequest) (*TenantResponse, error)
+	Update(context.Context, *TenantRequest) (*TenantResponse, error)
+	Delete(context.Context, *TenantRequest) (*TenantResponse, error)
 	mustEmbedUnimplementedTenantServer()
 }
 
@@ -66,6 +110,18 @@ func (UnimplementedTenantServer) API(context.Context, *TenantRequest) (*TenantRe
 }
 func (UnimplementedTenantServer) Create(context.Context, *TenantRequest) (*TenantResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedTenantServer) Fetch(context.Context, *TenantRequest) (*TenantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Fetch not implemented")
+}
+func (UnimplementedTenantServer) GetByID(context.Context, *TenantRequest) (*TenantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
+}
+func (UnimplementedTenantServer) Update(context.Context, *TenantRequest) (*TenantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTenantServer) Delete(context.Context, *TenantRequest) (*TenantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedTenantServer) mustEmbedUnimplementedTenantServer() {}
 
@@ -116,6 +172,78 @@ func _Tenant_Create_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Tenant_Fetch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TenantRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServer).Fetch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tenant.Tenant/Fetch",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServer).Fetch(ctx, req.(*TenantRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tenant_GetByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TenantRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServer).GetByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tenant.Tenant/GetByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServer).GetByID(ctx, req.(*TenantRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tenant_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TenantRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tenant.Tenant/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServer).Update(ctx, req.(*TenantRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tenant_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TenantRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tenant.Tenant/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServer).Delete(ctx, req.(*TenantRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Tenant_ServiceDesc is the grpc.ServiceDesc for Tenant service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -130,6 +258,22 @@ var Tenant_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _Tenant_Create_Handler,
+		},
+		{
+			MethodName: "Fetch",
+			Handler:    _Tenant_Fetch_Handler,
+		},
+		{
+			MethodName: "GetByID",
+			Handler:    _Tenant_GetByID_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Tenant_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Tenant_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
